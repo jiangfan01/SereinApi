@@ -5,5 +5,7 @@
 
 ### 项目启动：
 使用 ``yarn``  
-yarn   
+
+``yarn ``
+
 yarn start **如果没有yarn源请使用npm
