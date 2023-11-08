@@ -35,9 +35,21 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: {msg: "密码不能为空字符串"},
             },
         },
-        admin: DataTypes.BOOLEAN,
+        isAdmin: {
+          type:DataTypes.TINYINT,
+            allowNull:false,
+            validate:{
+              notNull:{msg:"必须填写是否为管理员"}
+            }
+        },
         avatar: DataTypes.STRING,
-        sex: DataTypes.TINYINT,
+        sex: {
+            type:DataTypes.TINYINT,
+            allowNull:false,
+            validate:{
+                notNull:{msg:"必须填写性别"}
+            }
+        },
         signature: DataTypes.STRING,
         introduce: DataTypes.STRING,
         company: DataTypes.STRING
