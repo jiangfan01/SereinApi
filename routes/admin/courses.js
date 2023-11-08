@@ -19,7 +19,7 @@ router.get('/', async function (req, res, next) {
 });
 
 /**
- * GET /admin/courses
+ * GET /admin/courses/:id
  * 单条课程
  */
 router.get('/:id', async function (req, res, next) {

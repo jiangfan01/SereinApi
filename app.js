@@ -12,6 +12,7 @@ const app = express();
 // 后台路由
 const adminArticlesRouter = require("./routes/admin/articles")
 const adminCoursesRouter = require("./routes/admin/courses")
+const adminCategoryRouter = require("./routes/admin/categories")
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,5 +26,6 @@ app.use('/users', usersRouter);
 // 后台
 app.use("/admin/articles", adminArticlesRouter)
 app.use("/admin/courses", adminCoursesRouter)
+app.use("/admin/categories", adminCategoryRouter)
 
 module.exports = app;
