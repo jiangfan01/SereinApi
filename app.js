@@ -13,6 +13,7 @@ const app = express();
 const adminArticlesRouter = require("./routes/admin/articles")
 const adminCoursesRouter = require("./routes/admin/courses")
 const adminCategoryRouter = require("./routes/admin/categories")
+const adminChapterRouter = require("./routes/admin/chapters")
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,5 +28,6 @@ app.use('/users', usersRouter);
 app.use("/admin/articles", adminArticlesRouter)
 app.use("/admin/courses", adminCoursesRouter)
 app.use("/admin/categories", adminCategoryRouter)
+app.use("/admin/chapters", adminChapterRouter)
 
 module.exports = app;
