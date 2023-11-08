@@ -1,6 +1,6 @@
 'use strict';
 const {
-    Model
+    Model, BOOLEAN
 } = require('sequelize');
 const moment = require("moment");
 module.exports = (sequelize, DataTypes) => {
@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-
+            models.Course.belongsTo(models.Category, {as: "category", foreignKey: "categoryId"})
+            models.Course.belongsTo(models.User, {as: "user", foreignKey: "userId"})
         }
     }
 
@@ -42,8 +43,20 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         image: DataTypes.STRING,
-        recommended: DataTypes.BOOLEAN,
-        introductory: DataTypes.BOOLEAN,
+        recommended: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            validate: {
+                notNull: {msg: "必须选择是否推荐"},
+            }
+        },
+        introductory: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            validate: {
+                notNull: {msg: "必须选择是否介绍"},
+            }
+        },
         content: DataTypes.TEXT,
         likesCount: DataTypes.INTEGER,
         createdAt: {
