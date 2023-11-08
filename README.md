@@ -6,8 +6,18 @@
 ### 项目启动：
 使用 ``yarn``  
 
+安装``yarn``  
+
+``npm i -g yarn``
+
+``yarn config set registry https://registry.npmmirror.com/ -g``
+``yarn config set disturl https://npmmirror.com/package/dist -g``
+``yarn config set sass_binary_site https://cdn.npmmirror.com/binaries/node-sass --global``
+
 ``yarn ``
 
-``yarn start``  **如果没有yarn源请使用npm**
+``yarn start``  **如果不想使用yarn源请使用npm**
+
+
 
 **注意！如果node版本不对请自行更新版本**
