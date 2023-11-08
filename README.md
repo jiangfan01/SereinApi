@@ -10,21 +10,23 @@ ___
 
 ___
 ### 项目启动：
-使用 ``yarn``  
+``使用 yarn
 
-安装``yarn``  
+安装 yarn
 
-``npm i -g yarn``
+npm i -g yarn
 
-``yarn config set registry https://registry.npmmirror.com/ -g``  
-``yarn config set disturl https://npmmirror.com/package/dist -g``  
-``yarn config set sass_binary_site https://cdn.npmmirror.com/binaries/node-sass --global``
+yarn config set registry https://registry.npmmirror.com/ -g
 
-``cd`` 进入克隆的路径
+yarn config set disturl https://npmmirror.com/package/dist -g
 
-``yarn ``  **初始化**
+yarn config set sass_binary_site https://cdn.npmmirror.com/binaries/node-sass --global
 
-``yarn start``  **如果不想使用yarn源请使用npm**
+cd 进入克隆的路径
+
+yarn  **初始化**
+
+yarn start  **如果不想使用yarn源请使用npm** ``
 
 
 
