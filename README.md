@@ -14,6 +14,8 @@
 ``yarn config set disturl https://npmmirror.com/package/dist -g``  
 ``yarn config set sass_binary_site https://cdn.npmmirror.com/binaries/node-sass --global``
 
+``cd`` 进入克隆的路径
+
 ``yarn ``
 
 ``yarn start``  **如果不想使用yarn源请使用npm**
