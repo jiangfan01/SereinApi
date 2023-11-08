@@ -9,3 +9,5 @@
 ``yarn ``
 
 ``yarn start``  **如果没有yarn源请使用npm**
+
+**注意！如果node版本不对请自行更新版本**
