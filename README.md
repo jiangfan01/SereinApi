@@ -10,8 +10,8 @@
 
 ``npm i -g yarn``
 
-``yarn config set registry https://registry.npmmirror.com/ -g``
-``yarn config set disturl https://npmmirror.com/package/dist -g``
+``yarn config set registry https://registry.npmmirror.com/ -g``  
+``yarn config set disturl https://npmmirror.com/package/dist -g``  
 ``yarn config set sass_binary_site https://cdn.npmmirror.com/binaries/node-sass --global``
 
 ``yarn ``
