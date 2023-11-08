@@ -10,7 +10,8 @@ ___
 
 ___
 ### 项目启动：
-`` 使用 yarn
+``
+使用 yarn
 
 安装 yarn
 
@@ -26,7 +27,8 @@ cd 进入克隆的路径
 
 yarn  **初始化**
 
-yarn start  **如果不想使用yarn源请使用npm** ``
+yarn start  **如果不想使用yarn源请使用npm** 
+``
 
 
 
