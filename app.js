@@ -22,6 +22,7 @@ const adminCategoriesRouter = require("./routes/admin/categories")
 const adminChaptersRouter = require("./routes/admin/chapters")
 const adminUsersRouter = require("./routes/admin/users")
 const adminAuthRouter = require("./routes/admin/auth")
+const adminChartsRouter = require("./routes/admin/charts")
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,6 +39,7 @@ app.use("/admin/courses", adminAuth(), adminCoursesRouter)
 app.use("/admin/categories", adminAuth(), adminCategoriesRouter)
 app.use("/admin/chapters", adminAuth(), adminChaptersRouter)
 app.use("/admin/users", adminAuth(), adminUsersRouter)
+app.use("/admin/chatrs", adminAuth(), adminChartsRouter)
 app.use("/admin/auth", adminAuthRouter)
 
 module.exports = app;
