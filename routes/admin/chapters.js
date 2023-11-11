@@ -1,6 +1,7 @@
 const {error, success} = require("../../utlis/messages");
 const models = require("../../models")
 const express = require("express");
+const {Op} = require("sequelize");
 const router = express.Router();
 
 /**
@@ -9,10 +10,56 @@ const router = express.Router();
  */
 router.get('/', async function (req, res, next) {
     try {
-        const chapters = await models.Chapter.findAll({
-            order: [['sort'],['id']]
+        const where = {}
+
+        const courseId = req.query.courseId
+        if (courseId) {
+            where.courseId = {
+                [Op.eq]: courseId
+            }
+        }
+
+        const title = req.query.title
+        if (title) {
+            where.title = {
+                [Op.like]: `%${title}%`
+            }
+        }
+
+        const content = req.query.content
+        if (content) {
+            where.content = {
+                [Op.like]: `%${content}%`
+            }
+        }
+        // 分页器
+        const currentPage = parseInt(req.query.currentPage) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+
+        // 使用findAndCountAll方法返回结果
+        const result = await models.Chapter.findAndCountAll({
+            order: [["sort",]],
+            where: where,
+            offset: (currentPage - 1) * pageSize,
+            limit: pageSize,
+            include:[
+                {
+                    model:models.Course,
+                    as:"course",
+                    attributes: ["id","name"]
+                },
+            ],
         })
-        success(res, "查询成功", {chapters})
+
+        const data = {
+            chapters: result.rows,
+            pagination: {
+                currentPage: currentPage,
+                pageSize: pageSize,
+                total: result.count
+            }
+        }
+        success(res, "查询成功", {data})
     } catch (err) {
         error(res, err)
     }

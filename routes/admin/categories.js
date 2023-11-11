@@ -1,6 +1,7 @@
 const {error, success} = require("../../utlis/messages");
 const models = require("../../models")
 const express = require("express");
+const {Op} = require("sequelize");
 const router = express.Router();
 
 /**
@@ -9,8 +10,19 @@ const router = express.Router();
  */
 router.get('/', async function (req, res, next) {
     try {
+        //  模糊搜索
+        const where = {}
+        // 定义搜索的关键词
+        const name = req.query.name
+        if (name) {
+            where.name = {
+                [Op.like]: `%${name}%`
+            }
+        }
+
         const categories = await models.Category.findAll({
-            order: [['sort'],['id']]
+            order: [['sort'], ['id']],
+            where: where
         })
         success(res, "查询成功", {categories})
     } catch (err) {
