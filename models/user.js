@@ -35,6 +35,24 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: {msg: "密码不能为空字符串"},
             },
         },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                notNull: {msg: "手机号必须填写"},
+                notEmpty: {msg: "手机号不能为空数字"},
+            },
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                notNull: {msg: "邮箱必须填写"},
+                notEmpty: {msg: "邮箱不能为空字符串"},
+            },
+        },
         isAdmin: {
           type:DataTypes.TINYINT,
             allowNull:false,

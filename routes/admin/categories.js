@@ -20,11 +20,27 @@ router.get('/', async function (req, res, next) {
             }
         }
 
-        const categories = await models.Category.findAll({
-            order: [['sort'], ['id']],
-            where: where
+        // 分页器
+        const currentPage = parseInt(req.query.currentPage) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+
+        // 使用findAndCountAll方法返回结果
+        const result = await models.Category.findAndCountAll({
+            order: [["sort",]],
+            where: where,
+            offset: (currentPage - 1) * pageSize,
+            limit: pageSize
         })
-        success(res, "查询成功", {categories})
+        // 数据处理
+        const data = {
+            users: result.rows,
+            pagination: {
+                currentPage: currentPage,
+                pageSize: pageSize,
+                total: result.count
+            }
+        }
+        success(res, "查询成功", data)
     } catch (err) {
         error(res, err)
     }

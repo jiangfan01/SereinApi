@@ -1,7 +1,7 @@
 const express = require('express');
 const {error, success} = require("../../utlis/messages");
 const models = require("../../models")
-const {where} = require("sequelize");
+const {where, Op} = require("sequelize");
 const router = express.Router();
 
 /**
@@ -10,10 +10,71 @@ const router = express.Router();
  */
 router.get('/', async function (req, res, next) {
     try {
-        const courses = await models.Course.findAll({
-            order: ['id']
+        const where = {}
+
+
+        const name = req.query.title
+        if (name) {
+            where.name = {
+                [Op.like]: `%${name}%`
+            }
+        }
+
+        const content = req.query.content
+        if (content) {
+            where.content = {
+                [Op.like]: `%${content}%`
+            }
+        }
+
+        // 查询推荐课程
+        const recommended = req.query.recommended;
+        if (recommended) {
+            where.recommended = {
+                [Op.eq]: recommended === "true"
+            }
+        }
+
+        // 查询入门课程
+        const introductory = req.query.introductory;
+        if (introductory) {
+            where.introductory = {
+                [Op.eq]: introductory === "true"
+            }
+        }
+        // 分页器
+        const currentPage = parseInt(req.query.currentPage) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 10;
+
+        // 使用findAndCountAll方法返回结果
+        const result = await models.Course.findAndCountAll({
+            order: [["id",]],
+            where: where,
+            offset: (currentPage - 1) * pageSize,
+            limit: pageSize,
+            include: [
+                {
+                    model: models.Category,
+                    as: "category",
+                    attributes: ["id", "name"]
+                },
+                {
+                    model: models.User,
+                    as: "user",
+                    attributes: ["id", "username"]
+                }
+            ],
         })
-        success(res, "查询成功", {courses})
+        // 数据处理
+        const data = {
+            courses: result.rows,
+            pagination: {
+                currentPage: currentPage,
+                pageSize: pageSize,
+                total: result.count
+            }
+        }
+        success(res, "查询成功", data)
     } catch (err) {
         error(res, err)
     }
@@ -44,19 +105,19 @@ router.post('/', async function (req, res, next) {
         // 验证分类是否存在
         const categoryId = await models.Category.findByPk(req.body.categoryId)
         if (!categoryId) {
-            error(res, "此分类不存在")
+            return error(res, "此分类不存在")
         }
 
         // 验证用户是否存在
         const userId = await models.User.findByPk(req.body.userId)
         if (!userId) {
-            error(res, "此用户不存在")
+            return error(res, "此用户不存在")
         }
 
         const course = await models.Course.create(req.body)
-        success(res, "新增成功", {course})
+        return success(res, "新增成功", {course})
     } catch (err) {
-        error(res, err)
+        return error(res, err)
     }
 });
 
