@@ -114,7 +114,7 @@ router.delete('/:id', async function (req, res, next) {
         if (!article) {
             return error(res, "文章不存在")
         }
-        article.destroy()
+        await article.destroy()
         success(res, "删除成功",)
     } catch (err) {
         error(res, err)

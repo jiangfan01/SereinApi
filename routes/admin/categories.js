@@ -33,7 +33,7 @@ router.get('/', async function (req, res, next) {
         })
         // 数据处理
         const data = {
-            users: result.rows,
+            categories: result.rows,
             pagination: {
                 currentPage: currentPage,
                 pageSize: pageSize,
@@ -86,7 +86,7 @@ router.put('/:id', async function (req, res, next) {
             error(res, "分类不存在")
         }
 
-        category.update(req.body)
+        await category.update(req.body)
         success(res, "修改成功",)
     } catch (err) {
         error(res, err)
@@ -104,7 +104,7 @@ router.delete('/:id', async function (req, res, next) {
             error(res, "分类不存在")
         }
 
-        category.destroy()
+        await category.destroy()
         success(res, "删除成功",)
     } catch (err) {
         error(res, err)

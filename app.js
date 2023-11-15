@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 // 注册.env文件
 require("dotenv").config();
 
@@ -24,6 +23,10 @@ const adminUsersRouter = require("./routes/admin/users")
 const adminAuthRouter = require("./routes/admin/auth")
 const adminChartsRouter = require("./routes/admin/charts")
 
+const cors = require('cors')
+
+
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

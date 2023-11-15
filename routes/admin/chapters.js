@@ -42,11 +42,11 @@ router.get('/', async function (req, res, next) {
             where: where,
             offset: (currentPage - 1) * pageSize,
             limit: pageSize,
-            include:[
+            include: [
                 {
-                    model:models.Course,
-                    as:"course",
-                    attributes: ["id","name"]
+                    model: models.Course,
+                    as: "course",
+                    attributes: ["id", "name"]
                 },
             ],
         })
@@ -105,7 +105,7 @@ router.put('/:id', async function (req, res, next) {
             error(res, "章节不存在")
         }
 
-        chapter.update(req.body)
+        await chapter.update(req.body)
         success(res, "修改成功",)
     } catch (err) {
         error(res, err)
@@ -123,7 +123,7 @@ router.delete('/:id', async function (req, res, next) {
             error(res, "章节不存在")
         }
 
-        chapter.destroy()
+        await chapter.destroy()
         success(res, "删除成功",)
     } catch (err) {
         error(res, err)

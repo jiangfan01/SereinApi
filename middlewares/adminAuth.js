@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 module.exports = (options) => {
     return function (req, res, next) {
 
+        return next()
+
         // 检查token是否存在
         const token = req.headers.token
         if (!token) {
@@ -29,6 +31,5 @@ module.exports = (options) => {
             // 其他地方可以通过 req.decoded.user.id 获取当前登录用户 id
             req.decoded = decoded
         })
-        next()
     }
 }

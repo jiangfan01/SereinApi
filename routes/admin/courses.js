@@ -141,7 +141,7 @@ router.put('/:id', async function (req, res, next) {
         if (!user) {
             return error(res, "所选择的用户不存在")
         }
-        course.update(req.body)
+        await course.update(req.body)
         success(res, "修改成功", {course})
     } catch (err) {
         error(res, err)
@@ -168,7 +168,7 @@ router.delete('/:id', async function (req, res, next) {
         if (chapterCount > 0) {
             return error(res, "该课程还有章节无法删除！")
         }
-        course.destroy()
+        await course.destroy()
         success(res, "删除成功",)
     } catch (err) {
         error(res, err)
