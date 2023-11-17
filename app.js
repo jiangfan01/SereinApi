@@ -13,7 +13,8 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-
+// 前台路由
+const uploadToken = require("./routes/uploadToken")
 // 后台路由
 const adminArticlesRouter = require("./routes/admin/articles")
 const adminCoursesRouter = require("./routes/admin/courses")
@@ -35,6 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// 前台
+app.use("/uploadToken", uploadToken)
 
 // 后台
 app.use("/admin/articles", adminAuth(), adminArticlesRouter)
