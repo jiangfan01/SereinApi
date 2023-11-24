@@ -11,9 +11,12 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            models.Course.belongsTo(models.Category, {as: "category", foreignKey: "categoryId"})
-            models.Course.belongsTo(models.User, {as: "user", foreignKey: "userId"})
-            models.Course.hasMany(models.Chapter, {as: "chapters"})
+            // 课程属于分类,别名category,用分类ID来关联
+            models.Course.belongsTo(models.Category,{as:"category",foreignKey:"categoryId"})
+            // 课程属于用户,别名user,使用用户ID来关联
+            models.Course.belongsTo(models.User,{as:"user",foreignKey:"userId"})
+            // 课程有很多章节,别名chapters
+            models.Course.hasMany(models.Chapter,{as:"chapters"})
         }
     }
 
@@ -43,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
                 len: {args: [2, 10], msg: "长度必须是2~10之间"}
             },
         },
-        image: DataTypes.STRING,
+        image: DataTypes.TEXT,
         recommended: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

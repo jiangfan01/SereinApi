@@ -13,7 +13,7 @@ router.get('/', async function (req, res, next) {
         const where = {}
 
 
-        const name = req.query.title
+        const name = req.query.name
         if (name) {
             where.name = {
                 [Op.like]: `%${name}%`

@@ -2,7 +2,6 @@ const { success, error } = require("../utlis/messages")
 const jwt = require("jsonwebtoken");
 
 module.exports = function (options){
-
     return function (req,res,next){
         // 判断token是否存在
         const token = req.headers.token
@@ -22,17 +21,13 @@ module.exports = function (options){
                         return error(res, "token 错误，请重新登录！", 503)
                     }
                 }
-                // 验证当前用户是否是管理员
-                if (!decoded.user.admin) {
-                    return error(res, "非法登录，当前用户不是管理员！", 504)
-                }
-
 
             }
             // 如果都成功，将 Token 解析出来的数据存入req。
             // 其他地方可以通过 req.decoded.user.id 获取当前登录用户 id
             req.decoded = decoded
+            next()
         });
-        next()
+
     }
 }

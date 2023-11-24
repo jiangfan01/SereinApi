@@ -10,7 +10,13 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
+            // 一个用户有多个课程,别名courses
             models.User.hasMany(models.Course, {as: "courses"})
+
+            /*
+                User和Course建立多对多关系,关联别名LikeCourses,用外键用户的ID来进行查询Likes表
+            * */
+            models.User.belongsToMany(models.Course, { as: "LikeCourses", through: "Likes", foreignKey: "userId" })
         }
     }
 
@@ -35,42 +41,35 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: {msg: "密码不能为空字符串"},
             },
         },
-        phone: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                notNull: {msg: "手机号必须填写"},
-                notEmpty: {msg: "手机号不能为空数字"},
-            },
-        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+            unique: {
+                msg: "邮箱已经存在，请直接登录"
+            },
             validate: {
                 notNull: {msg: "邮箱必须填写"},
                 notEmpty: {msg: "邮箱不能为空字符串"},
             },
         },
         isAdmin: {
-          type:DataTypes.TINYINT,
-            allowNull:false,
-            validate:{
-              notNull:{msg:"必须填写是否为管理员"}
-            }
+            type: DataTypes.TINYINT,
+            defaultValue: 1
         },
         avatar: DataTypes.STRING,
         sex: {
-            type:DataTypes.TINYINT,
-            allowNull:false,
-            validate:{
-                notNull:{msg:"必须填写性别"}
-            }
+            type: DataTypes.TINYINT,
+            defaultValue: 0
         },
         signature: DataTypes.STRING,
         introduce: DataTypes.STRING,
-        company: DataTypes.STRING
+        company: DataTypes.STRING,
+        verificationCode: {
+            type: DataTypes.STRING,
+        },
+        verificationCodeExpiration: {
+            type: DataTypes.DATE,
+        },
     }, {
         sequelize,
         modelName: 'User',

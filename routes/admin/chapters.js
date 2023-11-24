@@ -12,13 +12,15 @@ router.get('/', async function (req, res, next) {
     try {
         const where = {}
 
-        const courseId = req.query.courseId
+        //查询当前课程对应的章节
+        const courseId = req.query.courseId;
         if (courseId) {
             where.courseId = {
                 [Op.eq]: courseId
             }
         }
 
+        // 模糊搜索标题
         const title = req.query.title
         if (title) {
             where.title = {
@@ -59,7 +61,7 @@ router.get('/', async function (req, res, next) {
                 total: result.count
             }
         }
-        success(res, "查询成功", {data})
+        success(res, "查询成功", data)
     } catch (err) {
         error(res, err)
     }

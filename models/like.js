@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // 收藏属于课程,别名course
+      models.Like.belongsTo(models.Course, { as: "course" })
     }
   }
   Like.init({

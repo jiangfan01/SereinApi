@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
+            // 章节属于课程,别名course,使用课程ID关联
             models.Chapter.belongsTo(models.Course, {as: "course", foreignKey: "courseId"})
         }
     }
@@ -20,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
             type:DataTypes.INTEGER,
             allowNull:false,
             validate:{
-                notEmpty: {msg: "排序不能为空数字"},
                 notNull:{msg:"必须填写属于什么课程"},
                 isInt:{msg:"课程id必须是整数"},
             }

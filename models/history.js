@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
+            // 浏览历史属于课程和章节,别名course,chapter
+            models.History.belongsTo(models.Course, { as: "course" })
+            models.History.belongsTo(models.Chapter, { as: "chapter" })
         }
     }
 
