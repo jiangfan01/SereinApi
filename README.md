@@ -12,6 +12,12 @@
 - MySQL
 
 
+## 安装Laragon
+
+- 下载地址
+<https://www.openai.com>
+
+
 ## 安装依赖
 
 ```bash
