@@ -1,10 +1,8 @@
 # 介绍： 此项目是APP及后台接口项目
 
-# Node.js + Express + Sequelize + MySQL 示例
+#  Node.js + Express + Sequelize + MySQL 
 
 ## 项目概述
-
-该项目演示了如何使用 Node.js、Express、Sequelize 和 MySQL 构建一个简单的Web应用。项目包括用户管理和基本的数据库操作。
 
 ## 技术栈
 
@@ -13,21 +11,6 @@
 - Sequelize
 - MySQL
 
-## 项目结构
-
-project-root/
-│
-├── models/
-│ └── user.js
-│
-├── routes/
-│ └── users.js
-│
-├── config/
-│ └── database.js
-│
-├── app.js
-└── package.json
 
 ## 安装依赖
 
@@ -53,5 +36,16 @@ cd demo
 # 安装依赖包
 yarn
 
-#监听代码变动
+# 监听代码变动
 yarn add nodemon
+
+# 安装配置 Sequelize
+# 安装Sequelize 及其命令行支持
+yarn add sequelize
+yarn global add sequelize-cli
+
+# 安装对mysql的支持
+yarn add mysql2
+
+# 初始化Sequelize项目结构
+sequelize init
