@@ -84,9 +84,11 @@ sequelize init
  ```
 
 进入项目:
-
-    ```bash
     
     cd SereinApi
-    
-    ```
+
+    yarn //初始化
+
+    yarn start //启动项目
+
+    # 默认情况下，应用将运行在 http://localhost:3000。
