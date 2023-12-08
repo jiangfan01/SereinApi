@@ -1,35 +1,57 @@
 # 介绍： 此项目是APP及后台接口项目
 
-___
-## 技术栈：
-**node.js 18.13** + **experss** + **sequelize** + **mysql**
+# Node.js + Express + Sequelize + MySQL 示例
 
-___
-### 数据库启动：
-#### 这里我使用的是**laragon**,下载后直接安装启动数据库
+## 项目概述
 
-___
-### 项目启动：
-```
-使用 yarn
+该项目演示了如何使用 Node.js、Express、Sequelize 和 MySQL 构建一个简单的Web应用。项目包括用户管理和基本的数据库操作。
 
-安装 yarn
+## 技术栈
 
+- Node.js 18.13
+- Express
+- Sequelize
+- MySQL
+
+## 项目结构
+
+project-root/
+│
+├── models/
+│ └── user.js
+│
+├── routes/
+│ └── users.js
+│
+├── config/
+│ └── database.js
+│
+├── app.js
+└── package.json
+
+## 安装依赖
+
+```bash
+推荐使用 yarn 代替 npm，如果还没有安装，可以现在安装并配置好中国镜像
 npm i -g yarn
 
 yarn config set registry https://registry.npmmirror.com/ -g
-
 yarn config set disturl https://npmmirror.com/package/dist -g
-
 yarn config set sass_binary_site https://cdn.npmmirror.com/binaries/node-sass --global
 
-cd 进入克隆的路径
+## 安装依赖
 
-yarn  **初始化**
+# 安装 express-generator
+yarn global add  express-generator
 
-yarn start  **如果不想使用yarn源请使用npm** 
-```
+# 创建名为demo的项目
+express --no-view demo
 
+# 进入项目目录
+cd demo
 
+# 安装依赖包
+yarn
 
-**注意！如果node版本不对请自行更新版本**
+#监听代码变动
+yarn add nodemon
