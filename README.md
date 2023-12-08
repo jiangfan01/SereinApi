@@ -51,3 +51,16 @@ yarn add mysql2
 sequelize init
 
 ```
+## 配置数据库
+
+```bash
+
+## 找到 config/config.json，设置正确的项目名称和数据库账号密码
+
+"development": {
+    "username": "root", //你的数据库命
+    "password": "root", //你的数据库密码
+    "database": "blog_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+}
