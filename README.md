@@ -49,3 +49,5 @@ yarn add mysql2
 
 # 初始化Sequelize项目结构
 sequelize init
+
+```
