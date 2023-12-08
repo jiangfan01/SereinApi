@@ -15,8 +15,9 @@
 ## 安装Laragon
 
 - 下载地址
-<https://www.openai.com>
+<https://laragon.org/index.html>
 
+- 安装完成后启动所有即可
 
 ## 安装依赖
 
@@ -70,3 +71,4 @@ sequelize init
     "host": "127.0.0.1",
     "dialect": "mysql"
 }
+``` 
