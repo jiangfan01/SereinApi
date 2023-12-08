@@ -76,6 +76,17 @@ sequelize init
 
 ## 快速开始
 
-```bash
+克隆项目：
 
-## git
+   ```bash
+   git clone https://github.com/jiangfan01/SereinApi.git
+
+ ```
+
+进入项目:
+
+    ```bash
+    
+    cd SereinApi
+    
+    ```
